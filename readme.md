@@ -18,7 +18,9 @@ pip install -r requirements.txt
 2. Start the FastAPI Backend
 cd backend
 uvicorn main:app --reload
+Fast API server will run on http://localhost:8000
 
 3. Start the Streamlit Frontend
 cd frontend
 streamlit run app.py
+Streamlit UI server will run on http://localhost:8501
