@@ -22,6 +22,7 @@ uvicorn main:app --reload
 3. Start the Streamlit Frontend
 cd frontend
 streamlit run app.py
+
 ===========================================================
 📊 System Overview
 The Meeting Bot system is designed to extract structured insights like date, time, actions, and decisions from:
