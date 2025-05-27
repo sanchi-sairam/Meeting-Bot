@@ -61,7 +61,6 @@ def analyze_message(msg: Message):
         Output:
     """
     response = model(prompt)[0]["generated_text"]
-    print(response)
     response_dict = {}
     for i in response.split(","):
         key, value = i.split(":")[0], i.split(":")[-1]
@@ -70,24 +69,13 @@ def analyze_message(msg: Message):
     print(response_dict)
     result = {
         "Message": msg.text,
-        "Date": response_dict["date"],
-        "Time": response_dict["time"],
-        "Actions": response_dict["action_plan"],
+        "Date": response_dict["date"] if "date" in response_dict.keys() else None,
+        "Time": response_dict["time"] if "time" in response_dict.keys() else None,
+        "Actions": response_dict["action_plan"]  if "action_plan" in response_dict.keys() else None,
         "Decisions": response_dict["decision"] if "decision" in response_dict.keys() else None,
         "Meeting link" : None
     }
-
-    # for line in response.strip().split("\n"):
-    #     if line.lower().startswith("date"):
-    #         result["Date"] = line.split(":", 1)[-1].strip()
-    #     elif line.lower().startswith("time"):
-    #         result["Time"] = line.split(":", 1)[-1].strip()
-    #     elif line.lower().startswith("actions"):
-    #         result["Actions"] = line.split(":", 1)[-1].strip()
-    #     elif line.lower().startswith("decisions"):
-    #         result["Decisions"] = line.split(":", 1)[-1].strip()
-
-    print(result)
+    
     return result
 
 # Run locally
